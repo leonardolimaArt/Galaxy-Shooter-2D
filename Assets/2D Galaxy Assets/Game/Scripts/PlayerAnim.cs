@@ -25,12 +25,12 @@ public class PlayerAnim : MonoBehaviour
             anim.SetBool("virar_direita", true);
             
         }
-        if (Input.GetKeyUp(KeyCode.D))
+        if (Input.GetKeyUp(KeyCode.D) )
         {
             anim.SetBool("virar_direita", false);
 
         }
-        else if (Input.GetKeyUp(KeyCode.A))
+        else if (Input.GetKeyUp(KeyCode.A) )
         {
             anim.SetBool("virar_esquer", false);
 

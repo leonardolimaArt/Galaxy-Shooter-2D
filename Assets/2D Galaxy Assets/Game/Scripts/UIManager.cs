@@ -23,10 +23,11 @@ public class UIManager : MonoBehaviour
     public void EsconderUI()
     {
         MenuImg.SetActive(false);
+        pontInt = 0;
+        pontuacao.text = "Pontuação: " + pontInt;
     }
     public void MostrarUI()
     {
         MenuImg.SetActive(true);
-        pontuacao.text = "Pontuação: 0";
     }
 }

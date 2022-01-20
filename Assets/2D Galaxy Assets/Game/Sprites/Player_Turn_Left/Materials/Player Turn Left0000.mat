@@ -26,18 +26,18 @@ Material:
     m_Floats:
     - _Brightness: 2
     - _CLAMPOUT: 0
-    - _Darkmatter: 25
+    - _Darkmatter: 25.2
     - _Distfading: 68
-    - _Formuparam: 530
-    - _Iterations: 17
+    - _Formuparam: 800
+    - _Iterations: 15
     - _Saturation: 85
-    - _StepSize: 130
+    - _StepSize: 300
     - _Tile: 700
-    - _Volsteps: 20
+    - _Volsteps: 40
     - _Zoom: 800
     m_Colors:
     - _Center: {r: 1, g: 0.3, b: 0.5, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Rotation: {r: 35, g: 25, b: 75, a: 0.1}
-    - _Scroll: {r: 3, g: 1, b: 0.6, a: 0.01}
+    - _Scroll: {r: 3, g: 70, b: 0.6, a: 0.01}
   m_BuildTextureStacks: []

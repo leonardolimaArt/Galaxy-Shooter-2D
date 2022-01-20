@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InimigoIA : MonoBehaviour
 {
-
+    public bool Asteroid = false;
     [SerializeField]
     private float velocidade = 2f;
 
@@ -32,7 +32,10 @@ public class InimigoIA : MonoBehaviour
         {
             Instantiate(explosao, transform.position, transform.rotation);
             Destroy(other.gameObject);
-            uimanagerOBJ.UpdateScore();
+            if (Asteroid == false)
+            {
+                uimanagerOBJ.UpdateScore();
+            }
             Destroy(this.gameObject);
         }
         else if(other.tag == "Player"){

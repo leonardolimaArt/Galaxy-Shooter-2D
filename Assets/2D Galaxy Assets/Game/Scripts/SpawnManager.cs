@@ -7,6 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject Inimigo;
     [SerializeField]
+    private GameObject Asteroide;
+    [SerializeField]
     private float tempoInimigo = 1f;
     private float tempoVerifInimigo;
     [SerializeField]
@@ -27,7 +29,8 @@ public class SpawnManager : MonoBehaviour
         if(Time.time > tempoVerifInimigo)
         {
             tempoVerifInimigo = Time.time + tempoInimigo;
-            Instantiate(Inimigo, new Vector3(Random.Range(-7, 7), 7, 0), Quaternion.identity);
+            Instantiate(Inimigo, new Vector3(Random.Range(-7, 7), 14, 0), Quaternion.identity);
+            Instantiate(Asteroide, new Vector3(Random.Range(-7, 7), 14, 0), Quaternion.identity);
         }
 
         int objetoUP = Random.Range(0, 3);

@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-
     public bool tiroTriplo = false;
     public bool velocidadeUp = false;
     public bool escudoUp = false;
     private AudioSource powerUpAudio;
 
+    [SerializeField]
+    private Joystick _joystick;
+    [SerializeField]
+    private Button _Butao; 
     [SerializeField]
     private GameObject escudoGameObj;
     [SerializeField]
@@ -38,6 +42,12 @@ public class Player : MonoBehaviour
         uimanagerObj = GameObject.Find("Canvas").GetComponent<UIManager>();
         gameManagr = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        if(gameManagr.Mobile == true)
+        {
+            _Butao = GameObject.FindWithTag("BotaoAtirar").GetComponent<Button>();
+            _joystick = GameObject.FindWithTag("Joystick").GetComponent<Joystick>();
+        }
+        
         if(uimanagerObj != null)
         {
             uimanagerObj.UpdateVida(vidas);
@@ -47,16 +57,25 @@ public class Player : MonoBehaviour
     void Update()
     {
         Controlador();
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > verifAtirar)
+
+        if(gameManagr.Mobile == false)
         {
-            Atirar();
-            verifAtirar = Time.time + tempoAtirar;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Atirar();
+            }
+        }
+        else
+        {
+            _Butao.onClick.AddListener(Atirar);
         }
     }
     private void Controlador()
     {
+        float eixoX;
+        float eixoY;
 
-        if(velocidadeUp == true)
+        if (velocidadeUp == true)
         {
             Velocidade = 13f;
         }
@@ -65,8 +84,17 @@ public class Player : MonoBehaviour
             Velocidade = 7f;
         }
 
-        float eixoX = Velocidade * Input.GetAxis("Horizontal");
-        float eixoY = Velocidade * Input.GetAxis("Vertical");
+        if(gameManagr.Mobile == false)
+        {
+            eixoX = Velocidade * Input.GetAxis("Horizontal");
+            eixoY = Velocidade * Input.GetAxis("Vertical");
+        }
+        else
+        {
+            eixoX = Velocidade * _joystick.Horizontal;
+            eixoY = Velocidade * _joystick.Vertical;
+        }
+        
         transform.Translate(Vector3.right * eixoX * Time.deltaTime);
         transform.Translate(Vector3.up * eixoY * Time.deltaTime);
 
@@ -90,17 +118,21 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -4.25f, 0);
         }
     }
-    private void Atirar()
+    public void Atirar()
     {
-        if(tiroTriplo == true)
+        if (Time.time > verifAtirar)
         {
-            Instantiate(Laser, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
-            Instantiate(Laser, transform.position + new Vector3(0.55f, -0.45f, 0), transform.rotation);
-            Instantiate(Laser, transform.position + new Vector3(-0.55f, -0.45f, 0), transform.rotation);
-        }
-        else
-        {
-            Instantiate(Laser, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+            if (tiroTriplo == true)
+            {
+                Instantiate(Laser, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+                Instantiate(Laser, transform.position + new Vector3(0.55f, -0.45f, 0), transform.rotation);
+                Instantiate(Laser, transform.position + new Vector3(-0.55f, -0.45f, 0), transform.rotation);
+            }
+            else
+            {
+                Instantiate(Laser, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+            }
+            verifAtirar = Time.time + tempoAtirar;
         }
     }
 

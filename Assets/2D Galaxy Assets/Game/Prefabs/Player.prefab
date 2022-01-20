@@ -181,7 +181,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2100410677
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 1b4a8fdd39d3a45d0a9ee484ad6800ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -205,9 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e75d97e6ebd6f45a1c0339a2c4c761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mobile: 1
   tiroTriplo: 0
   velocidadeUp: 0
   escudoUp: 0
+  _joystick: {fileID: 0}
+  _Butao: {fileID: 0}
   escudoGameObj: {fileID: 3600492631271213936}
   turbina: {fileID: 1139626433}
   dano_motor: {fileID: 7090881447931717914}
@@ -371,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf053e51df5e71409178fad9bd0a70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _joystick: {fileID: 0}
 --- !u!95 &1950943508
 Animator:
   serializedVersion: 3
